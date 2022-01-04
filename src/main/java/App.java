@@ -4,6 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.sql.DriverManager;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class App {
@@ -12,10 +13,17 @@ public class App {
         System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize(); //Open chrome browser as maximize
-        driver.get("http://www.wikipedia.org");
+        driver.get("https://en.wikipedia.org/wiki/Sri_Lanka");
 
         //Working with Tables-------------------------------------------------------------------------------
+        System.out.println(driver.findElement(By.xpath("//*[@id=\"mw-content-text\"]/div[1]/table[4]/tbody/tr/td/table/tbody/tr[1]/td[1]")).getText());
+        System.out.println(driver.findElement(By.xpath("//*[@id=\"mw-content-text\"]/div[1]/table[4]/tbody/tr/td/table/tbody/tr[2]/td[1]")).getText());
 
+        List<WebElement> listOfWebElements = driver.findElements(By.xpath("//*[@id=\"mw-content-text\"]/div[1]/table[4]/tbody/tr/td/table/thead/tr"));
+
+        for (WebElement element : listOfWebElements){
+            System.out.println(element.getText());
+        }
 
         //====================================================================================================
 
